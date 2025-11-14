@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RMADA Website</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body class="device-page">
+    <!--Navbar Section-->
+    <nav class="navbar">
+        <div class="navbar__container">
+            <a href="/" id="navbar__logo"><i class="fas fa-globe"></i>  RMADA</a>
+            <div class="navbar__toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                    <a href="/" class="navbar__links">Início</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="LTT.html" class="navbar__links">Operação</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="/" class="navbar__links">Dispositivo</a>
+                </li>
+                <li class="navbar__btn">
+                    <button id="subscribeMain" class="button subscribe">Se Inscreva</button></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Main content: área do dispositivo / gráficos em tempo real -->
+    <main class="container">
+        <section class="device-panel">
+            <h1>Monitor de Dispositivos — Deslizamento de Terra</h1>
+
+            <div class="device-controls">
+                <div class="left-controls">
+                    <label for="wsUrl">WebSocket URL:</label>
+                    <input id="wsUrl" type="text" placeholder="ws://localhost:8080" value="ws://localhost:8080">
+                    <button id="connectBtn">Conectar</button>
+                    <span id="connStatus" class="status disconnected">Desconectado</span>
+                </div>
+                <div class="right-controls">
+                    <button id="requestPermBtn">Ativar notificações</button>
+                    <!-- Removed local subscribe button; use top 'Se Inscreva' navbar button -->
+                    <small class="hint">Notificações para alertas de risco</small>
+                </div>
+            </div>
+
+            <div class="charts-grid" id="chartsGrid">
+                <!-- 5 cartões/retângulos para gráficos -->
+                <div class="chart-card" data-device="D1">
+                    <div class="card-header">
+                        <h3>Dispositivo D1</h3>
+                        <div class="status-badge" id="status-D1">OK</div>
+                    </div>
+                    <canvas id="chart-0"></canvas>
+                    <div class="card-footer">Threshold: <span class="threshold">80</span></div>
+                </div>
+
+                <div class="chart-card" data-device="D2">
+                    <div class="card-header">
+                        <h3>Dispositivo D2</h3>
+                        <div class="status-badge" id="status-D2">OK</div>
+                    </div>
+                    <canvas id="chart-1"></canvas>
+                    <div class="card-footer">Threshold: <span class="threshold">80</span></div>
+                </div>
+
+                <div class="chart-card" data-device="D3">
+                    <div class="card-header">
+                        <h3>Dispositivo D3</h3>
+                        <div class="status-badge" id="status-D3">OK</div>
+                    </div>
+                    <canvas id="chart-2"></canvas>
+                    <div class="card-footer">Threshold: <span class="threshold">80</span></div>
+                </div>
+
+                <div class="chart-card" data-device="D4">
+                    <div class="card-header">
+                        <h3>Dispositivo D4</h3>
+                        <div class="status-badge" id="status-D4">OK</div>
+                    </div>
+                    <canvas id="chart-3"></canvas>
+                    <div class="card-footer">Threshold: <span class="threshold">80</span></div>
+                </div>
+
+                <div class="chart-card" data-device="D5">
+                    <div class="card-header">
+                        <h3>Dispositivo D5</h3>
+                        <div class="status-badge" id="status-D5">OK</div>
+                    </div>
+                    <canvas id="chart-4"></canvas>
+                    <div class="card-footer">Threshold: <span class="threshold">80</span></div>
+                </div>
+
+                <div class="chart-card" data-device="D6">
+                    <div class="card-header">
+                        <h3>Dispositivo D6</h3>
+                        <div class="status-badge" id="status-D6">OK</div>
+                    </div>
+                    <canvas id="chart-5"></canvas>
+                    <div class="card-footer">Threshold: <span class="threshold">80</span></div>
+                </div>
+            </div>
+
+            <aside class="alerts-panel">
+                <h2>Alertas</h2>
+                <ul id="alerts"></ul>
+            </aside>
+        </section>
+    </main>
+
+        <!-- Login / Autenticação modal -->
+        <div id="authModal" class="modal" aria-hidden="true">
+            <div class="modal-content">
+                <button class="modal-close" id="authClose">×</button>
+                <h2>Autenticação RMADA</h2>
+                <div class="tabs">
+                    <button class="tab active" data-tab="register">Proprietário</button>
+                    <button class="tab" data-tab="defense">Defesa Civil</button>
+                </div>
+                <div class="tab-panels">
+                    <div class="panel" id="panel-register">
+                        <h3>Registrar/Entrar como Proprietário</h3>
+                        <p style="font-size: 0.9em; color: #666; margin-bottom: 15px;">Controle total sobre dispositivos e dados</p>
+                        
+                        <label>Usuário</label>
+                        <input id="regUser" type="text" placeholder="seu_usuario">
+                        <label>Senha</label>
+                        <input id="regPass" type="password" placeholder="sua_senha">
+                        <label>Código do Proprietário</label>
+                        <input id="regOwnerCode" type="text" placeholder="código_proprietário">
+                        <button id="doRegister">Autenticar Proprietário</button>
+                        <div id="regMsg" class="small"></div>
+                    </div>
+
+                    <div class="panel" id="panel-defense" style="display:none;">
+                        <h3>Acesso Defesa Civil</h3>
+                        <p style="font-size: 0.9em; color: #666; margin-bottom: 15px;">Acesso emergencial em tempo real</p>
+                        
+                        <label>Código de Acesso</label>
+                        <input id="defCode" type="text" placeholder="código_defesa_civil">
+                        <button id="doDefenseLogin">Entrar Defesa Civil</button>
+                        <div id="defMsg" class="small"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <div class="social__media">
+            <div class="social__media--wrap">
+                <div class="footer__logo">
+                    <a href="/" id="footer__logo"><i class="fas fa-globe"></i>RMADA</a>
+                </div>
+                <p class="website__rights">© RMADA 2025. Todos os direitos reservados.</p>
+                <div class="social__icons">
+                    <a href="/" class="social__icon--link" target="_blank">
+                        <div class="fab fa-facebook"></div>
+                    </a>
+                      <a href="/" class="social__icon--link" target="_blank">
+                        <div class="fab fa-instagram"></div>
+                    </a>
+                      <a href="/" class="social__icon--link" target="_blank">
+                        <div class="fab fa-twitter"></div>
+                    </a>
+                      <a href="/" class="social__icon--link" target="_blank">
+                        <div class="fab fa-linkedin"></div>
+                    </a>
+                      <a href="/" class="social__icon--link" target="_blank">
+                        <div class="fab fa-youtube"></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RMADA Website</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!--Navbar Section-->
+    <nav class="navbar">
+        <div class="navbar__container">
+            <a href="/" id="navbar__logo"><i class="fas fa-globe"></i>  RMADA</a>
+            <div class="navbar__toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                    <a href="/" class="navbar__links">Início</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="LTT.html" class="navbar__links">Operação</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="/" class="navbar__links">Dispositivo</a>
+                </li>
+                <li class="navbar__btn">
+                    <button id="subscribeMain" class="button subscribe">Se Inscreva</button></li>
+            </ul>
+        </div>
+    </nav>
+    <!--Hero Section-->
+    <div class="main">
+        <div class="main__container">
+            <div class="main__content">
+                <h1>ALERTA ATIVO</h1>
+                <h2>DISPOSITIVO FUNCIONAL</h2>
+                <p>Aprenda a como conectar e se salvar com nossa tecnologia.</p>
+                <button class="main__btn subscribe">Se Inscreva</button>
+            </div>
+            <div class="main__img--container">
+                <img src="images/pic1.svg" alt="pic" id="main__img">
+            </div>
+        </div>
+    </div>
+
+    <!--Services Section-->
+    <div class="services">
+        <h1>Veja como nossa tecnologia opera !</h1>
+        <div class="services__container">
+                <div class="services__card">
+                <h2>Sinta-se seguro e protegido</h2>
+                <p>Alerta Instantâneo</p>
+                <button class="subscribe">Se Inscreva</button>
+            </div>
+            <div class="services__card">
+                <h2>Inovação na segurança</h2>
+                <p>Sensores que salvam</p>
+                <button class="subscribe">Se Inscreva</button>
+            </div>
+        </div>
+    </div>
+    <!-- Login / Inscrição modal (shared) -->
+    <div id="authModal" class="modal" aria-hidden="true">
+        <div class="modal-content">
+            <button class="modal-close" id="authClose">×</button>
+            <h2>Inscreva-se / Entrar</h2>
+            <div class="tabs">
+                <button class="tab active" data-tab="login">Entrar</button>
+                <button class="tab" data-tab="register">Registrar (Owner)</button>
+                <button class="tab" data-tab="defense">Defesa Civil</button>
+            </div>
+            <div class="tab-panels">
+                <div class="panel" id="panel-login">
+                    <label>Usuário</label>
+                    <input id="loginUser" type="text">
+                    <label>Senha</label>
+                    <input id="loginPass" type="password">
+                    <button id="doLogin">Entrar</button>
+                    <div id="loginMsg" class="small"></div>
+                </div>
+
+                <div class="panel" id="panel-register" style="display:none;">
+                    <label>Usuário (owner)</label>
+                    <input id="regUser" type="text">
+                    <label>Senha</label>
+                    <input id="regPass" type="password">
+                    <label>Código do Proprietário</label>
+                    <input id="regOwnerCode" type="text" placeholder="owner code">
+                    <button id="doRegister">Registrar Owner</button>
+                    <div id="regMsg" class="small"></div>
+                </div>
+
+                <div class="panel" id="panel-defense" style="display:none;">
+                    <label>Código Defesa Civil</label>
+                    <input id="defCode" type="text">
+                    <button id="doDefenseLogin">Entrar Defesa Civil</button>
+                    <div id="defMsg" class="small"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Footer Section-->
+    <div class="footer__container">
+        <div class="footer__links">
+            <div class="footer__link--wraper">
+                <div class="footer__links--items">
+                    <h2></h2>
+                </div>
+            </div>
+            <div class="footer__link--wraper">
+                <div class="footer__links--items">
+                    <h2></h2>
+                </div>
+            </div>
+            <div class="footer__link--wraper">
+                <div class="footer__links--items">
+                    <h2></h2>
+                </div>
+            </div>
+            <div class="footer__link--wraper">
+                <div class="footer__links--items">
+                    <h2></h2>
+                </div>
+            </div>
+        </div>
+        <div class="social__media">
+            <div class="social__media--wrap">
+                <div class="footer__logo">
+                    <a href="/" id="footer__logo"><i class="fas fa-globe"></i>RMADA</a>
+                </div>
+                <p class="website__rights">© RMADA 2025. Todos os direitos reservados.</p>
+                <div class="social__icons">
+                    <a href="/" class="social__icon--link" target="_blank">
+                        <div class="fab fa-facebook"></div>
+                    </a>
+                      <a href="/" class="social__icon--link" target="_blank">
+                        <div class="fab fa-instagram"></div>
+                    </a>
+                      <a href="/" class="social__icon--link" target="_blank">
+                        <div class="fab fa-twitter"></div>
+                    </a>
+                      <a href="/" class="social__icon--link" target="_blank">
+                        <div class="fab fa-linkedin"></div>
+                    </a>
+                      <a href="/" class="social__icon--link" target="_blank">
+                        <div class="fab fa-youtube"></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

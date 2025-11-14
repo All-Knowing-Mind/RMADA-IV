@@ -1,0 +1,72 @@
+# Node modules
+node_modules/
+package-lock.json
+
+# Environment variables (não commitar secrets!)
+.env
+.env.local
+.env.*.local
+
+# Build artifacts
+dist/
+build/
+*.exe
+*.o
+*.a
+*.so
+*.dylib
+
+# Rust cargo
+target/
+Cargo.lock
+**/*.rs.bk
+
+# Runtime / generated files
+keys/
+wg-config/
+lightway-config/*.conf
+lightway-config/*.log
+*.log
+*.pid
+*.seed
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+device-registry.json
+
+# User session files
+users.json
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+*.iml
+
+# Docker
+.dockerignore
+
+# System files
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Temporary files
+*.tmp
+*.bak
+*~
+.#*
+
+# OS-specific
+desktop.ini
+Thumbs.db

@@ -1,0 +1,49 @@
+# Dockerfile.server - Stage 1 build para RMADA (Node + WireGuard + Dilithium)
+# Suporta WebSocket, autenticação, onboarding de dispositivos com Dilithium
+# Pode rodar com docker-compose.yml ou via Earthly
+
+FROM node:18-bullseye
+
+# Install runtime dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    wireguard-tools \
+    iproute2 \
+    iputils-ping \
+    ca-certificates \
+    openssl \
+    bash \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /workspace
+
+# Copy Node.js app
+COPY package*.json ./
+RUN npm install --production || true
+
+COPY . .
+
+# Create necessary directories
+RUN mkdir -p /workspace/wg-config /workspace/keys /workspace/lightway-config
+
+# Copy pre-built Dilithium verifier if available
+RUN if [ -f meu_projeto_dilithium/target/release/meu_projeto_dilithium ]; then \
+    cp meu_projeto_dilithium/target/release/meu_projeto_dilithium /workspace/meu_projeto_dilithium/target/release/meu_projeto_dilithium; \
+  else \
+    echo "Note: Dilithium verifier not pre-built"; \
+  fi
+
+# Make scripts executable
+RUN chmod +x /workspace/*.sh 2>/dev/null || true
+RUN chmod +x docker-entrypoint.sh
+
+# Expose ports: 8080 (HTTP/WS), 51820 (WireGuard)
+EXPOSE 8080 51820/udp
+
+# Environment defaults
+ENV PORT=8080
+ENV NODE_ENV=production
+ENV DILITHIUM_VERIFY=1
+
+ENTRYPOINT ["/workspace/docker-entrypoint.sh"]
+CMD ["npm", "start"]

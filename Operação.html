@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RMADA Website</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body class="operacao-page">
+    <!--Navbar Section-->
+    <nav class="navbar">
+        <div class="navbar__container">
+            <a href="/" id="navbar__logo"><i class="fas fa-globe"></i>  RMADA</a>
+            <div class="navbar__toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                    <a href="/" class="navbar__links">Início</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="LTT.html" class="navbar__links">Operação</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="/" class="navbar__links">Dispositivo</a>
+                </li>
+                <li class="navbar__btn">
+                    <button id="subscribeMain" class="button subscribe">Se Inscreva</button></li>
+            </ul>
+        </div>
+    </nav>
+    <!--Hero Section-->
+    <div class="main">
+        <div class="main__container">
+            <div class="main__content">
+                <h1>O APLICATIVO QUE CONECTA !</h1>
+                <h2>DISPOSITIVO FUNCIONAL</h2>
+                <p>Aprenda a como conectar e se salvar com nossa tecnologia.</p>
+                <button class="main__btn subscribe">Se Inscreva</button>
+            </div>
+            <div class="main__img--container">
+                <img src="images/pic4.jpg" alt="pic" id="main__img">
+            </div>
+        </div>
+    </div>
+    <!-- Login / Autenticação modal -->
+    <div id="authModal" class="modal" aria-hidden="true">
+        <div class="modal-content">
+            <button class="modal-close" id="authClose">×</button>
+            <h2>Autenticação RMADA</h2>
+            <div class="tabs">
+                <button class="tab active" data-tab="register">Proprietário</button>
+                <button class="tab" data-tab="defense">Defesa Civil</button>
+            </div>
+            <div class="tab-panels">
+                <div class="panel" id="panel-register">
+                    <h3>Registrar/Entrar como Proprietário</h3>
+                    <p style="font-size: 0.9em; color: #666; margin-bottom: 15px;">Controle total sobre dispositivos e dados</p>
+                    
+                    <label>Usuário</label>
+                    <input id="regUser" type="text" placeholder="seu_usuario">
+                    <label>Senha</label>
+                    <input id="regPass" type="password" placeholder="sua_senha">
+                    <label>Código do Proprietário</label>
+                    <input id="regOwnerCode" type="text" placeholder="código_proprietário">
+                    <button id="doRegister">Autenticar Proprietário</button>
+                    <div id="regMsg" class="small"></div>
+                </div>
+
+                <div class="panel" id="panel-defense" style="display:none;">
+                    <h3>Acesso Defesa Civil</h3>
+                    <p style="font-size: 0.9em; color: #666; margin-bottom: 15px;">Acesso emergencial em tempo real</p>
+                    
+                    <label>Código de Acesso</label>
+                    <input id="defCode" type="text" placeholder="código_defesa_civil">
+                    <button id="doDefenseLogin">Entrar Defesa Civil</button>
+                    <div id="defMsg" class="small"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Text Section-->
+    <div class="text-section">
+        <div class="text-section__container">
+            <div class="text-section__content">
+<h4>Como o Site Funciona:</p>
+
+<h3>O Site opera em sincronia com o Dispositivo atraves da conexão LoRa, o Site faz uso de um sistema de VPN para criar uma conexão estavel e de tempo real entre ele e o Dispositivo, garantindo então uma troca de dados e segurança criptografada em ponta, o Site admnistra qualquer sinal emitido e enviado pelo Dispositivo e os analisa de acordo, transformando esses dados em notificações e graficos reais que o usuario pode vir a visualizar e interpretar com facil intendimento. </h3>
+<div class="text-section__img--container">
+                <img src="images/pic5.jpg" alt="pic" id="text-section__img">
+            </div>
+            
+<h3>O Site auxilia de tal forma que os dados recebidos e interpretados são transformados nas notificações visiveis e audiveis, que servem como aviso para o usuario para que o proprio saiba que em tal area especifica existe um alto ou altissimo risco de deslizamento de terra permitindo então uma evacuação mais rapida e precisa, com mais vidas sendo salvas e até bens materiais podendo ser recolhidos se houver tempo e recurso suficiente para isso. </h4>
+ 
+        <div class="social__media">
+            <div class="social__media--wrap">
+                <div class="footer__logo">
+                    <a href="/" id="footer__logo"><i class="fas fa-globe"></i>RMADA</a>
+                </div>
+                <p class="website__rights">© RMADA 2025. Todos os direitos reservados.</p>
+                <div class="social__icons">
+                    <a href="/" class="social__icon--link" target="_blank">
+                        <div class="fab fa-facebook"></div>
+                    </a>
+                      <a href="/" class="social__icon--link" target="_blank">
+                        <div class="fab fa-instagram"></div>
+                    </a>
+                      <a href="/" class="social__icon--link" target="_blank">
+                        <div class="fab fa-twitter"></div>
+                    </a>
+                      <a href="/" class="social__icon--link" target="_blank">
+                        <div class="fab fa-linkedin"></div>
+                    </a>
+                      <a href="/" class="social__icon--link" target="_blank">
+                        <div class="fab fa-youtube"></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

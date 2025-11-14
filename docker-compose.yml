@@ -1,0 +1,78 @@
+version: '3.8'
+
+services:
+  # Node.js server com WebSocket, auth e onboarding de dispositivos
+  rmada-server:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    container_name: rmada-server
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      - NODE_ENV=production
+      - OWNER_CODE=${OWNER_CODE:-OWNER-SECRET-CHANGEME}
+      - DEFENSE_CODE=${DEFENSE_CODE:-DEFENSE-SECRET-CHANGEME}
+      - DILITHIUM_VERIFY=${DILITHIUM_VERIFY:-1}
+      - WG_CONFIG_PATH=/wg-config/wg0.conf
+    volumes:
+      - ./wg-config:/wg-config
+      - ./users.json:/workspace/users.json
+      - ./device-registry.json:/workspace/device-registry.json
+    networks:
+      - rmada-net
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/api/whoami", "-H", "Authorization: Bearer dummy"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # Lightway server (opcional, para VPN mais avançado)
+  lightway-server:
+    image: rust:latest
+    container_name: lightway-server
+    working_dir: /workspace
+    volumes:
+      - ./lightway-main:/workspace
+      - ./lightway-config:/etc/lightway
+    ports:
+      - "443:443/udp"
+      - "443:443/tcp"
+    environment:
+      - RUST_LOG=info
+    command: >
+      bash -c "
+        cd lightway-server &&
+        cargo build --release &&
+        ./target/release/lightway-server --config /etc/lightway/server.conf
+      "
+    networks:
+      - rmada-net
+    restart: unless-stopped
+    profiles:
+      - lightway  # Only start if explicitly enabled
+
+networks:
+  rmada-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+volumes:
+  wg-config:
+  lightway-config:
+
+# Profiles:
+# - default: run only rmada-server (Node + Web)
+# - lightway: run with Lightway VPN server included
+#
+# Usage:
+#   docker-compose up                    # Run default (Node server only)
+#   docker-compose --profile lightway up # Run with Lightway
+#   docker-compose up -d                 # Run in background
+#   docker-compose logs -f rmada-server  # Watch server logs
+#   docker-compose down                  # Stop all services
